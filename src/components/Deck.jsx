@@ -49,9 +49,16 @@ const Deck = () => {
 
   return (
     <>
-      {deck.map((card, i) => {
-        return <Card key={i} />
-      })}
+      <div className="display-area">
+        {deck.map((card, i) => {
+          return (
+            <Card
+              key={i}
+              data={{ position: i, value: card[1], deckLength: deck.length }}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }
