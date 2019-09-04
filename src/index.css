@@ -1,7 +1,7 @@
 :root {
   font: 16px / 1 sans-serif;
   --deck-length: 52;
-  --border: 80px;
+  --border: 5%;
 }
 
 html {
@@ -14,14 +14,27 @@ body {
 }
 
 .display-area {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-direction: column;
 }
 
-.test-color {
+.card-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem;
+}
+
+.card {
   width: calc((100% - var(--border)) / var(--deck-length));
   height: 50px;
-  /* background-color: red; */
+  /* box-shadow: 0px 0px 0px 1px grey inset; */
+}
+
+button {
+  margin: 1rem;
 }

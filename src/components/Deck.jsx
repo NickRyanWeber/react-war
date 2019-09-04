@@ -19,6 +19,8 @@ const Deck = () => {
     ['King', 13],
     ['Ace', 14]
   ]
+  const [offset, setOffset] = useState(0)
+  const [tieOffset, setTieOffset] = useState(0)
 
   let holdVariable = ''
 
@@ -31,7 +33,7 @@ const Deck = () => {
         tempDeck.push(newCard)
       }
     }
-
+    setOffset(tempDeck.length / 2)
     const arrayLength = tempDeck.length
 
     for (let endSelector = arrayLength - 1; endSelector > 0; endSelector--) {
@@ -43,6 +45,25 @@ const Deck = () => {
     setDeck(tempDeck)
   }
 
+  const deal = () => {
+    const playerCard = deck[offset - tieOffset]
+    const computerCard = deck[offset + 1 + tieOffset]
+    if (playerCard[1] > computerCard[1]) {
+      setOffset(offset - 1)
+      console.log('player wins')
+      setTieOffset(0)
+    } else if (playerCard[1] < computerCard[1]) {
+      setOffset(offset + 1)
+      console.log('computer wins')
+      setTieOffset(0)
+    } else {
+      setTieOffset(tieOffset + 1)
+    }
+    console.log(deck)
+    console.log(playerCard)
+    console.log(computerCard)
+  }
+
   useEffect(() => {
     newShuffledDeck()
   }, [])
@@ -50,14 +71,22 @@ const Deck = () => {
   return (
     <>
       <div className="display-area">
-        {deck.map((card, i) => {
-          return (
-            <Card
-              key={i}
-              data={{ position: i, value: card[1], deckLength: deck.length }}
-            />
-          )
-        })}
+        <div className="card-area">
+          {deck.map((card, i) => {
+            return (
+              <Card
+                key={i}
+                data={{
+                  position: i,
+                  value: card[1],
+                  deckLength: deck.length,
+                  offset: offset
+                }}
+              />
+            )
+          })}
+        </div>
+        <button onClick={deal}>Deal</button>
       </div>
     </>
   )
