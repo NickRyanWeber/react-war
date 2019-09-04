@@ -82,7 +82,7 @@ const Deck = () => {
   return (
     <>
       <div className="display-area">
-        <h2>WAR</h2>
+        <h1>WAR</h1>
         <p>React App using a Single Array</p>
         <div className="card-area">
           {deck.map((card, i) => {
