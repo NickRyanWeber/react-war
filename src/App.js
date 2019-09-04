@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import HelloWorld from './components/HelloWorld'
+import Deck from './components/Deck'
 
 class App extends Component {
   render() {
-    return <HelloWorld />
+    return <Deck />
   }
 }
 
