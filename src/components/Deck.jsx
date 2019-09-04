@@ -48,14 +48,25 @@ const Deck = () => {
   const deal = () => {
     const playerCard = deck[offset - tieOffset]
     const computerCard = deck[offset + 1 + tieOffset]
+    let holdArray = []
     if (playerCard[1] > computerCard[1]) {
       setOffset(offset - 1)
       console.log('player wins')
       setTieOffset(0)
+      holdArray = deck.splice(offset - tieOffset, tieOffset + 2)
+      console.log(holdArray)
+      holdArray.map(card => {
+        setDeck(deck.unshift(card))
+      })
     } else if (playerCard[1] < computerCard[1]) {
       setOffset(offset + 1)
       console.log('computer wins')
       setTieOffset(0)
+      holdArray = deck.splice(offset - tieOffset, tieOffset + 2)
+      console.log(holdArray)
+      holdArray.map(card => {
+        setDeck(deck.push(card))
+      })
     } else {
       setTieOffset(tieOffset + 1)
     }
