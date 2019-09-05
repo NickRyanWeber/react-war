@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const Card = props => {
-  const [color, setColor] = useState('rgb(0, 0, 0)')
+  const [color, setColor] = useState('rgb(255, 255, 255)')
   const [index, setIndex] = useState(props.data.position)
   const [length, setLength] = useState(props.data.deckLength)
   const [offset, setOffset] = useState(props.data.offset)
@@ -28,6 +28,11 @@ const Card = props => {
     calcColor()
     // console.log(props)
   }, [])
+
+  useEffect(() => {
+    setOffset(props.data.offset)
+    calcColor()
+  }, [props])
 
   return (
     <>

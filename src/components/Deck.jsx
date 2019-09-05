@@ -43,6 +43,7 @@ const Deck = () => {
       tempDeck[randomNumber] = holdVariable
     }
     setDeck(tempDeck)
+    console.table(tempDeck)
   }
 
   const deal = () => {
@@ -50,27 +51,34 @@ const Deck = () => {
     const computerCard = deck[offset + 1 + tieOffset]
     let holdArray = []
     if (playerCard[1] > computerCard[1]) {
-      setOffset(offset - 1)
       console.log('player wins')
-      setTieOffset(0)
-      holdArray = deck.splice(offset - tieOffset, tieOffset + 2)
-      console.log(holdArray)
-      holdArray.map(card => {
-        setDeck(deck.unshift(card))
+      holdArray = deck.splice(
+        offset - tieOffset,
+        (tieOffset === 0 ? tieOffset : tieOffset + 1) + 2
+      )
+      holdArray.forEach(card => {
+        let _deck = deck
+        _deck.unshift(card)
+        setDeck(_deck)
       })
-    } else if (playerCard[1] < computerCard[1]) {
       setOffset(offset + 1)
-      console.log('computer wins')
       setTieOffset(0)
+    } else if (playerCard[1] < computerCard[1]) {
+      console.log('computer wins')
       holdArray = deck.splice(offset - tieOffset, tieOffset + 2)
-      console.log(holdArray)
-      holdArray.map(card => {
-        setDeck(deck.push(card))
+      holdArray.forEach(card => {
+        let _deck = deck
+        _deck.push(card)
+        setDeck(_deck)
       })
+      setTieOffset(0)
+      setOffset(offset - 1)
     } else {
       setTieOffset(tieOffset + 1)
+      console.log('tie')
     }
-    console.log(deck)
+    // TODO: move all setXXXX to after ifs
+    console.table(deck)
     console.log(playerCard)
     console.log(computerCard)
   }
