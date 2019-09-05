@@ -23,7 +23,7 @@ const Deck = () => {
   const [tieOffset, setTieOffset] = useState(0)
 
   let holdVariable = ''
-
+  console.log('merge test')
   const newShuffledDeck = () => {
     let tempDeck = []
 
