@@ -60,7 +60,7 @@ const Deck = () => {
         _deck.unshift(card)
         setDeck(_deck)
       })
-      setOffset(offset + 1)
+      setOffset(tieOffset + offset + 1)
       setTieOffset(0)
     } else if (playerCard[1] < computerCard[1]) {
       console.log('computer wins')
@@ -70,8 +70,8 @@ const Deck = () => {
         _deck.push(card)
         setDeck(_deck)
       })
+      setOffset(tieOffset + offset - 1)
       setTieOffset(0)
-      setOffset(offset - 1)
     } else {
       setTieOffset(tieOffset + 1)
       console.log('tie')
@@ -106,7 +106,11 @@ const Deck = () => {
             )
           })}
         </div>
-        <button onClick={deal}>Deal</button>
+        <section className="data-area">
+          <p>Player Cards: {offset}</p>
+          <button onClick={deal}>Deal</button>
+          <p>Computer Cards: {deck.length - offset}</p>
+        </section>
       </div>
     </>
   )

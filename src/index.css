@@ -35,12 +35,14 @@ body {
   /* box-shadow: 0px 0px 0px 1px grey inset; */
 }
 
-button {
-  margin: 0.5rem;
-}
-
 h1,
 p {
   padding: 0rem;
   margin: 0rem;
+}
+
+.data-area {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - var(--border));
 }
