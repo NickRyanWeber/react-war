@@ -111,6 +111,10 @@ const Deck = () => {
           <button onClick={deal}>Deal</button>
           <p>Computer Cards: {deck.length - offset}</p>
         </section>
+        <section>
+          {/* TODO: add a section to show cards */}
+          {/* likely will need to useState to start cards and WIN/LOSE/TIE messages */}
+        </section>
       </div>
     </>
   )
